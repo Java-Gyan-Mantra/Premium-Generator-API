@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Health Insurance</title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<style type="text/css">
+body {
+	background: url("../images/chs1.png");
+	background-size: cover;
+}
+</style>
+</head>
+<body>
+	<h1 class="register-title">Health-Insurance-Premium-Quote-Generator</h1>
+	<div class="register" align="center">
+		<h3 th:text="${errorMessage}" style="color: red; font-weight: bold;"></h3>
+	</div>
+	<div th:each="resp : ${response}" class="register">
+		<h1
+			th:text="'Health Insurance Premium for      Mr.'+${resp.name}+' : '+${resp.amount}"
+			style="font-weight: bold; color: black;">Response</h1>
+	</div>
+	<form method="post" class="register" action="/calculatePremium">
+		<div class="register-switch">
+			<input type="radio" name="gender" value="Female" id="sex_f"
+				class="register-switch-input" checked="" /> <label for="sex_f"
+				class="register-switch-label">Female</label> <input type="radio"
+				name="gender" value="Male" id="sex_m" class="register-switch-input" />
+			<label for="sex_m" class="register-switch-label">Male</label>
+		</div>
+		<input type="text" class="register-input" placeholder="Name"
+			name="name" required="required" /> <input type="text"
+			class="register-input" placeholder="Enter your Age" name="age"
+			required="required" /> <br></br>
+		<fieldset>
+			<legend style="color: blue; font-weight: bold;">Current
+				Health :</legend>
+
+			<table>
+				<tr>
+					<td>Hypertension :</td>
+					<td>Yes <input type="radio" name="hypertension" value="yes" />
+						No <input type="radio" name="hypertension" value="no" /></td>
+				</tr>
+				<tr>
+					<td>Blood Sugar :</td>
+					<td>Yes <input type="radio" name="bloodSugar" value="yes" />
+						No <input type="radio" name="bloodSugar" value="no" /></td>
+				</tr>
+				<tr>
+					<td>Overweight :</td>
+					<td>Yes <input type="radio" name="overWeight" value="yes" />
+						No <input type="radio" name="overWeight" value="no" /></td>
+				</tr>
+				<tr>
+					<td>Blood Pressure :</td>
+					<td>Yes <input type="radio" name="bloodPressure" value="yes" />
+						No <input type="radio" name="bloodPressure" value="no" /></td>
+				</tr>
+			</table>
+		</fieldset>
+
+
+		<br></br>
+		<fieldset>
+			<legend style="color: blue; font-weight: bold;">Habits : </legend>
+
+			<table>
+				<tr>
+					<td>Smocking :</td>
+					<td>Yes <input type="radio" name="smoking" value="yes" /> No
+						<input type="radio" name="smoking" value="no" /></td>
+				</tr>
+				<tr>
+					<td>Alcohol :</td>
+					<td>Yes <input type="radio" name="alcohol" value="yes" /> No
+						<input type="radio" name="alcohol" value="no" /></td>
+				</tr>
+				<tr>
+					<td>Drugs :</td>
+					<td>Yes <input type="radio" name="drugs" value="yes" /> No <input
+						type="radio" name="drugs" value="no" /></td>
+				</tr>
+				<tr>
+					<td>Daily Exercise :</td>
+					<td>Yes <input type="radio" name="dailyExercise" value="yes" />
+						No <input type="radio" name="dailyExercise" value="no" /></td>
+				</tr>
+			</table>
+		</fieldset>
+		<input type="submit" value="Generate Premium" class="register-button" />
+	</form>
+
+</body>
+</html>
